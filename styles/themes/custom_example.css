@@ -1,10 +1,28 @@
 /*!
- * Modified from GitHub's Dark Dimmed theme, licensed under the MIT License
- * Copyright (c) 2018 GitHub Inc.
- * https://github.com/primer/primitives/blob/main/LICENSE
+ * Modified from GitHub's Dark Dimmed theme + bug-style-theme (深色模式)
+ * 整合了KingHwaOldSong字体、自定义大小/颜色
  */
 
+/* 1. 加载bug主题字体（KingHwaOldSong） */
+@font-face {
+  font-family: 'KingHwaOldSong';
+  src: url('https://cdn.jsdelivr.net/gh/你的GitHub用户名/fonts/KingHwaOldSong.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/你的GitHub用户名/fonts/KingHwaOldSong.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 确保字体加载时不闪烁 */
+}
+
 main {
+  /* 2. bug主题核心变量（字体、颜色等） */
+  --bug-font: 'KingHwaOldSong', 'Times New Roman', serif; /* 主题字体 */
+  --bug-text-color: #e8e2d5; /* 深色模式文本色 */
+  --bug-font-size: 16px; /* 字体大小 */
+  --bug-line-height: 1.6em; /* 行高 */
+  --bug-letter-spacing: 0.8pt; /* 字母间距 */
+  --bug-link-hover: #d4b68a; /* 链接hover色 */
+
+  /* 保留原深色模式基础样式 */
   --color-prettylights-syntax-comment: #768390;
   --color-prettylights-syntax-constant: #6cb6ff;
   --color-prettylights-syntax-entity: #dcbdfb;
@@ -61,18 +79,18 @@ main {
   --color-segmented-control-bg: rgb(99 110 123 / 10%);
   --color-segmented-control-button-bg: #22272e;
   --color-segmented-control-button-selected-border: #636e7b;
-  --color-fg-default: #adbac7;
+  --color-fg-default: var(--bug-text-color); /* 复用bug主题文本色 */
   --color-fg-muted: #768390;
   --color-fg-subtle: #545d68;
-  --color-canvas-default: rgb(25 39 52);
+  --color-canvas-default: #3a3630; /* bug主题深色背景色 */
   --color-canvas-overlay: #161b22;
   --color-canvas-inset: rgb(21 32 43 / 100%);
-  --color-canvas-subtle: rgb(37 51 65);
-  --color-border-default: #444c56;
+  --color-canvas-subtle: #46413a; /* bug主题卡片背景色 */
+  --color-border-default: #615b52; /* bug主题边框色 */
   --color-border-muted: #373e47;
-  --color-neutral-muted: rgb(99 110 123 / 40%);
-  --color-accent-fg: #539bf5;
-  --color-accent-emphasis: #316dca;
+  --color-neutral-muted: rgb(99 110 123 / 40%);——色中性-静音：rgb(99 110 123 / 40%)；
+  --color-accent-fg: var(--bug-link-hover); /* 复用bug主题强调色 */
+  --color-accent-emphasis: #316dca;——color-accent-emphasis: # 316 dca;——color-accent-emphasis: # 316 dca;——color-accent-emphasis: # 316 dca；
   --color-accent-muted: rgb(65 132 228 / 40%);
   --color-accent-subtle: rgb(56 139 253 / 10%);
   --color-success-fg: #57ab5a;
@@ -91,41 +109,63 @@ main {
   --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
 }
 
-main .pagination-loader-container {
-  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
+/* 3. 应用bug主题字体和文本样式到评论区所有元素 */
+main body,
+main .comment-body,
+main .markdown-body p,
+main .markdown-body li,
+main .discussion-header .title,
+main .timeline-comment-header .author,
+main .timeline-comment-header .timestamp,
+main textarea,
+main .gsc-comment-box textarea {
+  font-family: var(--bug-font) !important; /* 强制使用主题字体 */
+  font-size: var(--bug-font-size) !important; /* 字体大小 */
+  line-height: var(--bug-line-height) !important; /* 行高 */
+  letter-spacing: var(--bug-letter-spacing) !important; /* 字母间距 */
+  color: var(--bug-text-color) !important; /* 文本颜色 */
 }
 
-/*! Custom CSS */
-
-.gsc-reactions-count {
-  display: none;
+/* 4. 应用bug主题链接hover颜色 */
+main a:hover,
+main .timeline-comment-header .author:hover {
+  color: var(--bug-link-hover) !important; /* 链接hover强调色 */
 }
 
-.gsc-timeline {
+/* 保留原有的其他样式（时间线、加载动画等） */
+main .pagination-loader-container {主要。pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");背景图片:url(“https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg”);
+}
+
+.gsc-reactions-count {   ．gsc-reactions-count {
+  display: none;   显示:没有;
+}
+
+.gsc-timeline {   ．gsc-timeline {
   flex-direction: column-reverse;
 }
 
-.gsc-header {
-  padding-bottom: 1rem;
+.gsc-header {   ．gsc-header {
+  padding-bottom: 1rem;   padding-bottom: 1快速眼动;
 }
 
-.gsc-comments > .gsc-header {
-  order: 1;
+.gsc-comments > .gsc-header {．Gsc-comments >。gsc-header {
+  order: 1;   顺序:1;
 }
 
-.gsc-comments > .gsc-comment-box {
-  order: 2;
-  margin-bottom: 1rem;
+.gsc-comments > .gsc-comment-box {．Gsc-comments >。gsc-comment-box {
+  order: 2;   秩序:2;
+  margin-bottom: 1rem;   margin-bottom: 1快速眼动;
 }
 
-.gsc-comments > .gsc-timeline {
-  order: 3;
+.gsc-comments > .gsc-timeline {．Gsc-comments >。gsc-timeline {
+  order: 3;   秩序:3;
 }
 
-.gsc-homepage-bg {
-  background-color: #15202b;
+.gsc-homepage-bg {   ．gsc-homepage-bg {
+  background-color: var(--color-canvas-default); /* 复用主题背景色 */
 }
 
-main .gsc-loading-image {
-  background-image: url("https://github.githubassets.com/images/mona-loading-dimmed.gif");
+main .gsc-loading-image {   主要。gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-dimmed.gif");背景图片:url(“https://github.githubassets.com/images/mona-loading-dimmed.gif”);
 }
