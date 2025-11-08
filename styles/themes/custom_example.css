@@ -1,10 +1,28 @@
 /*!
- * Modified from GitHub's Dark Dimmed theme, licensed under the MIT License
- * Copyright (c) 2018 GitHub Inc.
- * https://github.com/primer/primitives/blob/main/LICENSE
+ * Modified from GitHub's Dark Dimmed theme + bug-style-theme (深色模式)
+ * 整合了KingHwaOldSong字体、自定义大小/颜色（已去除边框）
  */
 
+/* 1. 加载bug主题字体（KingHwaOldSong） */
+@font-face {
+  font-family: 'KingHwaOldSong';
+  src: url('https://cdn.jsdelivr.net/gh/你的GitHub用户名/fonts/KingHwaOldSong.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/你的GitHub用户名/fonts/KingHwaOldSong.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 确保字体加载时不闪烁 */
+}
+
 main {
+  /* 2. bug主题核心变量（字体、颜色等）- 移除边框相关设置 */
+  --bug-font: 'KingHwaOldSong', 'Times New Roman', serif; /* 主题字体 */
+  --bug-text-color: #e8e2d5; /* 深色模式文本色 */
+  --bug-font-size: 16px; /* 字体大小 */
+  --bug-line-height: 1.6em; /* 行高 */
+  --bug-letter-spacing: 0.8pt; /* 字母间距 */
+  --bug-link-hover: #d4b68a; /* 链接hover色 */
+
+  /* 保留原深色模式基础样式 - 边框相关变量设为透明（核心修改） */
   --color-prettylights-syntax-comment: #768390;
   --color-prettylights-syntax-constant: #6cb6ff;
   --color-prettylights-syntax-entity: #dcbdfb;
@@ -35,44 +53,48 @@ main {
   --color-prettylights-syntax-brackethighlighter-angle: #768390;
   --color-prettylights-syntax-sublimelinter-gutter-mark: #545d68;
   --color-prettylights-syntax-constant-other-reference-link: #96d0ff;
+  
+  /* 按钮边框设为透明（核心修改） */
   --color-btn-text: #adbac7;
   --color-btn-bg: #373e47;
-  --color-btn-border: rgb(205 217 229 / 10%);
+  --color-btn-border: transparent; /* 移除按钮边框 */
   --color-btn-shadow: 0 0 transparent;
   --color-btn-inset-shadow: 0 0 transparent;
   --color-btn-hover-bg: #444c56;
-  --color-btn-hover-border: #768390;
+  --color-btn-hover-border: transparent; /* 移除按钮hover边框 */
   --color-btn-active-bg: hsl(213deg 12% 27% / 100%);
-  --color-btn-active-border: #636e7b;
+  --color-btn-active-border: transparent; /* 移除按钮active边框 */
   --color-btn-selected-bg: #2d333b;
   --color-btn-primary-text: #fff;
   --color-btn-primary-bg: #347d39;
-  --color-btn-primary-border: rgb(205 217 229 / 10%);
+  --color-btn-primary-border: transparent; /* 移除主按钮边框 */
   --color-btn-primary-shadow: 0 0 transparent;
   --color-btn-primary-inset-shadow: 0 0 transparent;
   --color-btn-primary-hover-bg: #46954a;
-  --color-btn-primary-hover-border: rgb(205 217 229 / 10%);
+  --color-btn-primary-hover-border: transparent; /* 移除主按钮hover边框 */
   --color-btn-primary-selected-bg: #347d39;
   --color-btn-primary-selected-shadow: 0 0 transparent;
   --color-btn-primary-disabled-text: rgb(205 217 229 / 50%);
   --color-btn-primary-disabled-bg: rgb(52 125 57 / 60%);
-  --color-btn-primary-disabled-border: rgb(205 217 229 / 10%);
+  --color-btn-primary-disabled-border: transparent; /* 移除主按钮禁用边框 */
+  
+  /* 其他边框相关变量设为透明（核心修改） */
   --color-action-list-item-default-hover-bg: rgb(144 157 171 / 12%);
   --color-segmented-control-bg: rgb(99 110 123 / 10%);
   --color-segmented-control-button-bg: #22272e;
-  --color-segmented-control-button-selected-border: #636e7b;
-  --color-fg-default: #adbac7;
-  --color-fg-muted: #768390;
+  --color-segmented-control-button-selected-border: transparent; /* 移除分段控制选中边框 */
+  --color-fg-default: var(--bug-text-color); /* 复用bug主题文本色 */
+  --color-fg-muted: #768390;——color-fg-muted: # 768390;
   --color-fg-subtle: #545d68;
-  --color-canvas-default: rgb(25 39 52);
-  --color-canvas-overlay: #161b22;
+  --color-canvas-default: #3a3630; /* bug主题深色背景色 */
+  --color-canvas-overlay: #161b22;——color-canvas-overlay: # 161 b22;
   --color-canvas-inset: rgb(21 32 43 / 100%);
-  --color-canvas-subtle: rgb(37 51 65);
-  --color-border-default: #444c56;
-  --color-border-muted: #373e47;
+  --color-canvas-subtle: #46413a; /* bug主题卡片背景色 */
+  --color-border-default: transparent; /* 全局边框色设为透明 */
+  --color-border-muted: transparent; /* 次要边框色设为透明 */
   --color-neutral-muted: rgb(99 110 123 / 40%);
-  --color-accent-fg: #539bf5;
-  --color-accent-emphasis: #316dca;
+  --color-accent-fg: var(--bug-link-hover); /* 复用bug主题强调色 */
+  --color-accent-emphasis: #316dca;——color-accent-emphasis: # 316 dca;
   --color-accent-muted: rgb(65 132 228 / 40%);
   --color-accent-subtle: rgb(56 139 253 / 10%);
   --color-success-fg: #57ab5a;
@@ -91,41 +113,79 @@ main {
   --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
 }
 
-main .pagination-loader-container {
-  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
+/* 3. 应用bug主题字体和文本样式到评论区所有元素 */
+main body,   主体,
+main .comment-body,   主要.comment-body主注释体，注释体
+main .markdown-body p,   主要。markdown-body p,主要。Markdown-body p .；markdown-body p,
+main .markdown-body li,   主要。markdown-body李
+main .discussion-header .title,主要。discussion-header .title,主要。讨论标题，标题，标题。discussion-header .title,
+main .timeline-comment-header .author,主要。timeline-comment-header .author,主要。Timeline-comment-header .author，作者。timeline-comment-header .author,
+main .timeline-comment-header .timestamp,主要。timeline-comment-header .timestamp,主要。时间轴-注释头-时间戳timeline-comment-header .timestamp,
+main textarea,
+main .gsc-comment-box textarea {主要。Gsc-comment-box textarea {主要。Gsc-comment-box textarea {{}Gsc-comment-box textarea {
+  font-family: var(--bug-font) !important; /* 强制使用主题字体 */
+  font-size: var(--bug-font-size) !important; /* 字体大小 */
+  line-height: var(--bug-line-height) !important; /* 行高 */行高：var（——bug-line-height） ！/* 行高 */
+  letter-spacing: var(--bug-letter-spacing) !important; /* 字母间距 */
+  color: var(--bug-text-color) !important; /* 文本颜色 */
+  border: none !important; /* 强制移除文本元素边框 */
 }
 
-/*! Custom CSS */
-
-.gsc-reactions-count {
-  display: none;
+/* 4. 应用bug主题链接hover颜色 + 移除链接边框 */
+main a:hover,   主要一个:徘徊,
+main .timeline-comment-header .author:hover {主要。timeline-comment-header。作者:{徘徊
+  color: var(--bug-link-hover) !important; /* 链接hover强调色 */
+  border: none !important; /* 移除链接边框 */
 }
 
-.gsc-timeline {
+/* 保留原有的其他样式（时间线、加载动画等），但移除边框 */
+main .pagination-loader-container {主要。pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");背景图片:url(“https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg”);
+  border: none !important; /* 移除加载容器边框 */
+}
+
+.gsc-reactions-count {   ．gsc-reactions-count {．Gsc-reactions-count{。gsc-reactions-count {
+  display: none;   显示:没有;
+}
+
+.gsc-timeline {   ．gsc-timeline {．Gsc-timeline{。gsc-timeline {
   flex-direction: column-reverse;
+  border: none !important; /* 移除时间线边框 */
 }
 
-.gsc-header {
-  padding-bottom: 1rem;
+.gsc-header {   ．gsc-header {   ．Gsc-header{。gsc-header {
+  padding-bottom: 1rem;   padding-bottom: 1快速眼动;
+  border: none !important; /* 移除头部边框 */
 }
 
-.gsc-comments > .gsc-header {
-  order: 1;
+.gsc-comments > .gsc-header {．Gsc-comments >。gsc-header {．Gsc-comments >。gsc-header{。Gsc-comments >。gsc-header {
+  order: 1;   顺序:1;
+  border: none !important;   Border: none；
 }
 
-.gsc-comments > .gsc-comment-box {
-  order: 2;
-  margin-bottom: 1rem;
+.gsc-comments > .gsc-comment-box {．Gsc-comments >。gsc-comment-box {．Gsc-comments >。gsc-comment-box{。Gsc-comments >。gsc-comment-box {．Gsc-comments >。gsc-comment-box{。Gsc-comments >。gsc-comment-box{。Gsc-comments >。gsc-comment-box{。Gsc-comments >。gsc-comment-box {
+  order: 2;   秩序:2;
+  margin-bottom: 1rem;   margin-bottom: 1快速眼动;
+  border: none !important; /* 移除评论框边框 */
 }
 
-.gsc-comments > .gsc-timeline {
-  order: 3;
+.gsc-comments > .gsc-timeline {．Gsc-comments >。gsc-timeline {．Gsc-comments >。gsc-timeline{。Gsc-comments >。gsc-timeline {．Gsc-comments >。gsc-timeline{。Gsc-comments >。gsc-timeline{。Gsc-comments >。gsc-timeline{。Gsc-comments >。gsc-timeline {
+  order: 3;   秩序:3;
+  border: none !important;   Border: none；Border: none；边界:没有;
 }
 
-.gsc-homepage-bg {
-  background-color: #15202b;
+.gsc-homepage-bg {   ．gsc-homepage-bg {．gsc-主页-bg{。gsc-homepage-bg {．gsc-主页-bg{。gsc-首页-bg{.gsc-首页-bg{。gsc-homepage-bg {
+  background-color: var(--color-canvas-default); /* 复用主题背景色 */
+  border: none !important; /* 移除主页背景边框 */
 }
 
-main .gsc-loading-image {
-  background-image: url("https://github.githubassets.com/images/mona-loading-dimmed.gif");
+main .gsc-loading-image {   主要。gsc-loading-image {主要。Gsc-loading-image {}gsc-loading-image {主要。Gsc-loading-image {}Gsc-loading-image {}Gsc-loading-image {} Gsc-loading-image {主要。Gsc-loading-image {}Gsc-loading-image {}Gsc-loading-image {} Gsc-loading-image {}Gsc-loading-image {}Gsc-loading-image {}Gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-dimmed.gif");背景图片:url(“https://github.githubassets.com/images/mona-loading-dimmed.gif”);
+  border: none !important; /* 移除加载图片边框 */
 }
+
+/* 补充：强制移除所有可能的边框（覆盖遗漏的元素） */
+* {
+  border: none !important;   Border: none；Border: none；边界:没有;
+  outline: none   没有一个 !important   ！重要的; /* 同时移除焦点轮廓（可选） */
+                                                                                                                                                                               }
