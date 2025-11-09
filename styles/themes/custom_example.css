@@ -7,155 +7,315 @@
  * https://github.com/primer/primitives/blob/main/LICENSE
  */
 
-/* 全局字体样式设置 */
-main, body {
+/* 导入自定义字体 */
+@font-face {
+  font-family: 'KingHwaOldSong';
+  src: url('https://cdn.jsdelivr.net/gh/yourusername/fonts/KingHwaOldSong.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/yourusername/fonts/KingHwaOldSong.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 全局字体样式设置（同步日式主题） */
+main, body, .giscus-frame, .giscus-frame * {
   font: normal 16px 'KingHwaOldSong', 'Times New Roman', serif;
   line-height: 1.6em;
   letter-spacing: 0.8pt;
+  color: #5a5448; /* 日式深灰棕文本 */
 }
 
 main {   
-  /* 代码高亮相关颜色变量（保留语法高亮功能） */
+  /* 代码高亮相关颜色变量（保留语法高亮，适配日式色调） */
   --color-prettylights-syntax-comment: #768390;
   --color-prettylights-syntax-constant: #6cb6ff;
   --color-prettylights-syntax-entity: #dcbdfb;
-  --color-prettylights-syntax-storage-modifier-import: #adbac7;
+  --color-prettylights-syntax-storage-modifier-import: #768390;
   --color-prettylights-syntax-entity-tag: #8ddb8c;
   --color-prettylights-syntax-keyword: #f47067;
   --color-prettylights-syntax-string: #96d0ff;
-  --color-prettylights-syntax-variable: #f69d50;
+  --color-prettylights-syntax-variable: #c89f70; /* 替换为日式茶棕 */
   --color-prettylights-syntax-brackethighlighter-unmatched: #e5534b;
-  --color-prettylights-syntax-invalid-illegal-text: #cdd9e5;
-  --color-prettylights-syntax-invalid-illegal-bg: transparent; /* 移除背景色 */
-  --color-prettylights-syntax-carriage-return-text: #cdd9e5;
-  --color-prettylights-syntax-carriage-return-bg: transparent; /* 移除背景色 */
+  --color-prettylights-syntax-invalid-illegal-text: #5a5448;
+  --color-prettylights-syntax-invalid-illegal-bg: transparent;
+  --color-prettylights-syntax-carriage-return-text: #5a5448;
+  --color-prettylights-syntax-carriage-return-bg: transparent;
   --color-prettylights-syntax-string-regexp: #8ddb8c;
-  --color-prettylights-syntax-markup-list: #eac55f;
-  --color-prettylights-syntax-markup-heading: #316dca;
-  --color-prettylights-syntax-markup-italic: #adbac7;
-  --color-prettylights-syntax-markup-bold: #adbac7;
+  --color-prettylights-syntax-markup-list: #c89f70; /* 日式茶棕 */
+  --color-prettylights-syntax-markup-heading: #5a5448; /* 日式深灰棕 */
+  --color-prettylights-syntax-markup-italic: #768390;
+  --color-prettylights-syntax-markup-bold: #5a5448;
   --color-prettylights-syntax-markup-deleted-text: #ffd8d3;
-  --color-prettylights-syntax-markup-deleted-bg: transparent; /* 移除背景色 */
+  --color-prettylights-syntax-markup-deleted-bg: transparent;
   --color-prettylights-syntax-markup-inserted-text: #b4f1b4;
-  --color-prettylights-syntax-markup-inserted-bg: transparent; /* 移除背景色 */
+  --color-prettylights-syntax-markup-inserted-bg: transparent;
   --color-prettylights-syntax-markup-changed-text: #ffddb0;
-  --color-prettylights-syntax-markup-changed-bg: transparent; /* 移除背景色 */
-  --color-prettylights-syntax-markup-ignored-text: #adbac7;
-  --color-prettylights-syntax-markup-ignored-bg: transparent; /* 移除背景色 */
+  --color-prettylights-syntax-markup-changed-bg: transparent;
+  --color-prettylights-syntax-markup-ignored-text: #768390;
+  --color-prettylights-syntax-markup-ignored-bg: transparent;
   --color-prettylights-syntax-meta-diff-range: #dcbdfb;
-  --color-prettylights-syntax-brackethighlighter-angle: #768390;
-  --color-prettylights-syntax-sublimelinter-gutter-mark: #545d68;
-  --color-prettylights-syntax-constant-other-reference-link: #96d0ff;
+  --color-prettylights-syntax-brackethighlighter-angle: #d1c9b8; /* 日式浅棕灰 */
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #d1c9b8;
+  --color-prettylights-syntax-constant-other-reference-link: #c89f70; /* 日式茶棕链接 */
 
-  /* 按钮样式（移除背景色和边框） */
-  --color-btn-text: #adbac7;
-  --color-btn-bg: transparent; /* 移除背景色 */
-  --color-btn-border: transparent; /* 移除边框 */
+  /* 按钮样式（日式配色：浅棕灰边框+透明背景） */
+  --color-btn-text: #5a5448;
+  --color-btn-bg: transparent;
+  --color-btn-border: #d1c9b8; /* 日式浅棕灰边框 */
   --color-btn-shadow: 0 0 transparent;
   --color-btn-inset-shadow: 0 0 transparent;
-  --color-btn-hover-bg: transparent; /* 移除悬停背景色 */
-  --color-btn-hover-border: transparent; /* 移除悬停边框 */
-  --color-btn-active-bg: transparent; /* 移除激活背景色 */
-  --color-btn-active-border: transparent; /* 移除激活边框 */
-  --color-btn-selected-bg: transparent; /* 移除选中背景色 */
-  --color-btn-primary-text: #fff;
-  --color-btn-primary-bg: transparent; /* 移除主要按钮背景色 */
-  --color-btn-primary-border: transparent; /* 移除主要按钮边框 */
+  --color-btn-hover-bg: rgba(200, 159, 112, 0.1); /* 茶棕淡背景 */
+  --color-btn-hover-border: #c89f70; /* 日式茶棕边框 */
+  --color-btn-active-bg: rgba(200, 159, 112, 0.2);
+  --color-btn-active-border: #c89f70;
+  --color-btn-selected-bg: rgba(200, 159, 112, 0.1);
+  --color-btn-selected-border: #d1c9b8;
+
+  /* 主要按钮（日式茶棕主题） */
+  --color-btn-primary-text: #f7f3ea;
+  --color-btn-primary-bg: #c89f70; /* 日式茶棕背景 */
+  --color-btn-primary-border: #c89f70;
   --color-btn-primary-shadow: 0 0 transparent;
   --color-btn-primary-inset-shadow: 0 0 transparent;
-  --color-btn-primary-hover-bg: transparent; /* 移除主要按钮悬停背景色 */
-  --color-btn-primary-hover-border: transparent; /* 移除主要按钮悬停边框 */
-  --color-btn-primary-selected-bg: transparent; /* 移除主要按钮选中背景色 */
-  --color-btn-primary-selected-shadow: 0 0 transparent;
-  --color-btn-primary-disabled-text: rgb(205 217 229 / 50%);
-  --color-btn-primary-disabled-bg: transparent; /* 移除主要按钮禁用背景色 */
-  --color-btn-primary-disabled-border: transparent; /* 移除主要按钮禁用边框 */
+  --color-btn-primary-hover-bg: #b08a5c; /* 深茶棕 */
+  --color-btn-primary-hover-border: #b08a5c;
+  --color-btn-primary-selected-bg: #c89f70;
+  --color-btn-primary-selected-border: #c89f70;
+  --color-btn-primary-disabled-text: rgba(247, 243, 234, 0.7);
+  --color-btn-primary-disabled-bg: rgba(200, 159, 112, 0.5);
+  --color-btn-primary-disabled-border: rgba(200, 159, 112, 0.5);
 
-  /* 动作列表和分段控制器（移除背景色和边框） */
-  --color-action-list-item-default-hover-bg: transparent; /* 移除悬停背景色 */
-  --color-segmented-control-bg: transparent; /* 移除背景色 */
-  --color-segmented-control-button-bg: transparent; /* 移除背景色 */
-  --color-segmented-control-button-selected-border: transparent; /* 移除边框 */
+  /* 动作列表和分段控制器（日式边框） */
+  --color-action-list-item-default-hover-bg: rgba(200, 159, 112, 0.1);
+  --color-segmented-control-bg: transparent;
+  --color-segmented-control-button-bg: transparent;
+  --color-segmented-control-button-selected-border: #c89f70; /* 茶棕选中边框 */
 
-  /* 前景色（保留文本颜色） */
-  --color-fg-default: #adbac7;
+  /* 前景色（日式深灰棕为主） */
+  --color-fg-default: #5a5448;
   --color-fg-muted: #768390;
-  --color-fg-subtle: #545d68;
+  --color-fg-subtle: #948c7f;
 
-  /* 画布背景（全部移除） */
+  /* 画布背景（透明，继承页面日式背景） */
   --color-canvas-default: transparent;
   --color-canvas-overlay: transparent;
   --color-canvas-inset: transparent;
   --color-canvas-subtle: transparent;
 
-  /* 边框（全部移除） */
-  --color-border-default: transparent;
-  --color-border-muted: transparent;
+  /* 边框（统一日式浅棕灰） */
+  --color-border-default: #d1c9b8;
+  --color-border-muted: #e0d8c8; /* 更浅的棕灰 */
 
-  /* 其他状态色（仅保留文本色，移除背景相关） */
-  --color-neutral-muted: rgb(99 110 123 / 40%);
-  --color-accent-fg: #539bf5;
-  --color-accent-emphasis: #316dca;
-  --color-accent-muted: rgb(65 132 228 / 40%);
-  --color-accent-subtle: transparent; /* 移除背景强调 */
-  --color-success-fg: #57ab5a;
+  /* 其他状态色（适配日式色调） */
+  --color-neutral-muted: rgba(148, 140, 127, 0.4);
+  --color-accent-fg: #c89f70; /* 日式茶棕强调色 */
+  --color-accent-emphasis: #b08a5c;
+  --color-accent-muted: rgba(200, 159, 112, 0.4);
+  --color-accent-subtle: rgba(200, 159, 112, 0.1);
+  --color-success-fg: #8ddb8c;
   --color-attention-fg: #c69026;
-  --color-attention-muted: rgb(174 124 20 / 40%);
-  --color-attention-subtle: transparent; /* 移除背景 */
+  --color-attention-muted: rgba(198, 144, 38, 0.4);
+  --color-attention-subtle: rgba(198, 144, 38, 0.1);
   --color-danger-fg: #e5534b;
-  --color-danger-muted: rgb(229 83 75 / 40%);
-  --color-danger-subtle: transparent; /* 移除背景 */
+  --color-danger-muted: rgba(229, 83, 75, 0.4);
+  --color-danger-subtle: rgba(229, 83, 75, 0.1);
   --color-primer-shadow-inset: 0 0 transparent;
-  --color-scale-gray-7: transparent; /* 移除灰色系背景 */
-  --color-scale-blue-8: transparent; /* 移除蓝色系背景 */
+  --color-scale-gray-7: #d1c9b8;
+  --color-scale-blue-8: #c89f70;
 
-  /* 社交反应（移除背景） */
-  --color-social-reaction-bg-hover: transparent;
-  --color-social-reaction-bg-reacted-hover: transparent;
+  /* 社交反应（日式茶棕 hover） */
+  --color-social-reaction-bg-hover: rgba(200, 159, 112, 0.1);
+  --color-social-reaction-bg-reacted-hover: rgba(200, 159, 112, 0.2);
 }
 
 /* 移除分页加载器背景图 */
-main .pagination-loader-container {主要。pagination-loader-container {
-  background-image: none;   背景图片:没有;
+main .pagination-loader-container {
+  background-image: none;
 }
 
-/*! 自定义CSS */
+/*! giscus 自定义样式（同步日式博客主题） */
 
 /* 隐藏反应计数 */
-.gsc-reactions-count {   ．gsc-reactions-count {
-  display: none;   显示:没有;
+.gsc-reactions-count {
+  display: none;
 }
 
 /* 时间线布局方向 */
-.gsc-timeline {   ．gsc-timeline {
+.gsc-timeline {
   flex-direction: column-reverse;
 }
 
 /* 头部内边距 */
-.gsc-header {   ．gsc-header {
-  padding-bottom: 1rem;   padding-bottom: 1快速眼动;
+.gsc-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d1c9b8; /* 日式浅棕灰分隔线 */
 }
 
 /* 评论区域布局排序 */
-.gsc-comments > .gsc-header {．Gsc-comments >。gsc-header {
-  order: 1;   顺序:1;
+.gsc-comments > .gsc-header {
+  order: 1;
 }
 
-.gsc-comments > .gsc-comment-box {．Gsc-comments >。gsc-comment-box {
-  order: 2;   秩序:2;
-  margin-bottom: 1rem;   margin-bottom: 1快速眼动;
+.gsc-comments > .gsc-comment-box {
+  order: 2;
+  margin-bottom: 1rem;
 }
 
-.gsc-comments > .gsc-timeline {．Gsc-comments >。gsc-timeline {
-  order: 3;   秩序:3;
-}
-
-/* 移除主页背景色 */
-.gsc-homepage-bg {   ．gsc-homepage-bg {
-  background-color: transparent;背景颜色:透明;
+.gsc-comments > .gsc-timeline {
+  order: 3;
 }
 
 /* 移除加载图片背景 */
-main .gsc-loading-image {   主要。gsc-loading-image {
-  background-image: none;   背景图片:没有;
+main .gsc-loading-image {
+  background-image: none;
+}
+
+/* 评论输入框样式（日式边框） */
+.gsc-comment-box textarea,
+.gsc-comment-box input {
+  border: 1px solid #d1c9b8 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  color: #5a5448 !important;
+}
+
+.gsc-comment-box textarea:focus,
+.gsc-comment-box input:focus {
+  border-color: #c89f70 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(200, 159, 112, 0.1) !important;
+}
+
+/* 评论项样式（日式分隔线） */
+.gsc-comment {
+  border-bottom: 1px dashed #e0d8c8 !important;
+  padding: 1rem 0 !important;
+}
+
+/* 评论者名称颜色 */
+.gsc-comment-author {
+  color: #c89f70 !important;
+  font-weight: bold !important;
+}
+
+/* 评论时间颜色 */
+.gsc-comment-time {
+  color: #948c7f !important;
+}
+
+/* 标签/提及样式 */
+.gsc-comment-content a:not(.gsc-comment-author) {
+  color: #c89f70 !important;
+  text-decoration: none !important;
+}
+
+.gsc-comment-content a:not(.gsc-comment-author):hover {
+  color: #b08a5c !important;
+  text-decoration: underline dotted !important;
+  text-underline-offset: 0.3em !important;
+}
+
+/* 代码块样式（日式边框） */
+.gsc-comment-content pre,
+.gsc-comment-content code {
+  border: 1px solid #d1c9b8 !important;
+  border-radius: 0 !important;
+  color: #5a5448 !important;
+  background-color: transparent !important;
+}
+
+/* 引用块样式（日式茶棕左边框） */
+.gsc-comment-content blockquote {
+  border-left: 3px solid #c89f70 !important;
+  border-right: 1px solid #d1c9b8 !important;
+  color: #5a5448 !important;
+  background-color: transparent !important;
+}
+
+/* 分页按钮样式（同步日式分页） */
+.gsc-pagination button {
+  border: 1px solid #d1c9b8 !important;
+  border-radius: 0 !important;
+  color: #5a5448 !important;
+  background-color: transparent !important;
+}
+
+.gsc-pagination button:hover,
+.gsc-pagination button.active {
+  background-color: #c89f70 !important;
+  color: #f7f3ea !important;
+  border-color: #c89f70 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 深色模式适配（日式深棕调） */
+@media (prefers-color-scheme: dark) {
+  main, body, .giscus-frame, .giscus-frame * {
+    color: #e8e2d5 !important;
+  }
+
+  main {
+    --color-border-default: #615b52; /* 日式深棕边框 */
+    --color-border-muted: #706a5f;
+    --color-btn-border: #615b52;
+    --color-btn-hover-border: #d4b68a;
+    --color-accent-fg: #d4b68a; /* 深色模式茶棕 */
+    --color-accent-emphasis: #e0c898;
+  }
+
+  .gsc-comment-box textarea,
+  .gsc-comment-box input {
+    border-color: #615b52 !important;
+    color   颜色: #e8e2d5 !important;
+  }
+
+  .gsc-comment-box textarea:focus,
+  .gsc-comment-box input:focus {
+    border-color: #d4b68a !important;
+    box-shadow: 0 0 0 2px rgba(212, 182, 138, 0.1) !important;
+  }
+
+  .gsc-comment {
+    border-bottom-color: #706a5f !important;
+  }
+
+  .gsc-comment-author {
+    color: #d4b68a !important;
+  }
+
+  .gsc-comment-time {
+    color: #b8b2a6 !important;
+  }
+
+  .gsc-comment-content a:not(.gsc-comment-author) {
+    color: #d4b68a !important;
+  }
+
+  .gsc-comment-content a:not(.gsc-comment-author):hover {
+    color: #e0c898 !important;
+  }
+
+  .gsc-comment-content pre,
+  .gsc-comment-content code {
+    border-color: #615b52 !important;
+    color: #e8e2d5 !important;
+  }
+
+  .gsc-comment-content blockquote {
+    border-left-color: #d4b68a !important;
+    border-right-color: #615b52 !important;
+    color: #e8e2d5 !important;
+  }
+
+  .gsc-pagination button {
+    border-color: #615b52 !important;
+    color: #e8e2d5 !important;
+  }
+
+  .gsc-pagination button:hover,
+  .gsc-pagination button.active {
+    background-color: #d4b68a !important;
+    color: #3a3630 !important;
+    border-color: #d4b68a !important;
+  }
 }
